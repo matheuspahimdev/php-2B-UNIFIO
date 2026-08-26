@@ -1,7 +1,7 @@
 <?php
 
-    $email = $_POST["email"];
-    $senha = $_POST["senha"];
+    $email = htmlspecialchars($_POST["email"]);
+    $senha = htmlspecialchars($_POST["senha"]);
 
     echo "Processando o acesso para o e-mail: " . $email;
 
