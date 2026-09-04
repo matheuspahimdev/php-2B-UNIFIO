@@ -1,46 +1,34 @@
 <?php
 
-// DECLARAÇÃO DE VARIÁVEIS
-$nomeCliente = "Marcelo";
-$planoBase = 150.50;
-$qtdRamExtra = 4;
-$valorRamExtra = 12.00;
-$taxaImposto = 0.15;
-$descontoFidelidade = 25.00;
+    $usuario = "Matheus";
+    $senhaDigitada = "123456";
+    $senhaCorreta = "123456";
 
-// REGRAS DE NEGÓCIO (OPERAÇÕES)
+    if ($senhaDigitada === $senhaCorreta) {
+        echo "Acesso liberado, Bem vindo $usuario";
+    } else {
+        echo "Senha incorreta";
+    }
 
-// 1. Custo da RAM
-$custoRam = $qtdRamExtra * $valorRamExtra;
+    $perfil = "admin";
 
-// 2. Subtotal
-$subtotal = $planoBase + $custoRam;
+    if ($perfil === "admin") {
+        echo "<br>Acesso total";
+    } else if ($perfil === "editor") {
+        echo "<br>Permissão exclusiva para publicar artigos.";
+    } else {
+        echo "<br>Acesso restrito apenas para leitura.";
+    }
 
-// 3. Aplicação do desconto
-$subtotalDescontado = $subtotal - $descontoFidelidade;
+    $statusPedido = 2;
 
-// 4. Cálculo do Imposto
-$valorImposto = ($taxaImposto * $subtotalDescontado);
+    // A expressão match retorna a string diretamente para a variável
+    $mensagem = match ($statusPedido) {
+        1 => "<br><br>Aguardando Pagamento",
+        2 => "<br><br>Pagamento aprovado",
+        default => "<br><br>Status inválido"
+    };
 
-// 5. Total Final
-$totalFinal = $subtotalDescontado + $valorImposto;
-
-// 6. Programa de Pontos
-
-$pontos = (int)($totalFinal / 50);
-$restoPontos = (int)$totalFinal % 50;
-
-
-// IMPRESSÃO DO RECIBO
-echo "--- FATURA DA NUVEM ---";
-echo "<br>Cliente: " . $nomeCliente;
-echo "<br>Subtotal dos serviços: R$ " . $subtotal;
-echo "<br>Desconto aplicado: R$ " . $descontoFidelidade;
-echo "<br>Valor base para impostos: R$ " . $subtotalDescontado;
-echo "<br>Imposto calculado (15%): R$ " . $valorImposto;
-echo "<br>TOTAL A PAGAR: R$ " . $totalFinal;
-echo "<br><br>--- PROGRAMA DE PONTOS ---";
-echo "<br>Pontos adquiridos: " . $pontos;
-echo "<br>Valor restante para o próximo ponto: R$ " . $restoPontos;
+    echo $mensagem;
 
 ?>
