@@ -1,34 +1,25 @@
-<?php
+<?php 
 
-    $usuario = "Matheus";
-    $senhaDigitada = "123456";
-    $senhaCorreta = "123456";
+    $catalogo = [
+        ["produto" => "SSD 1TB", "estoque" => 5, "status" => "ok"],
+        ["produto" => "Monitor", "estoque" => 0, "status" => "ok"],
+        ["produto" => "Bateria", "estoque" => 10, "status" => "recall"],
+        ["produto" => "Teclado", "estoque" => 20, "status" => "ok"]
+    ];
 
-    if ($senhaDigitada === $senhaCorreta) {
-        echo "Acesso liberado, Bem vindo $usuario";
-    } else {
-        echo "Senha incorreta";
+    foreach ($catalogo as $item) {
+        
+        if ($item["estoque"] === 0) {
+            continue;
+        }
+        
+        if ($item["status"] === "recall") {
+            echo "<br><span style='color:red;'>ALERTA: Catálogo bloqueado. Recall detectado!</span>";
+            break;
+        }
+
+        echo "<br>Produto: {$item["produto"]} (Quantidade: {$item["estoque"]})";
+
     }
-
-    $perfil = "admin";
-
-    if ($perfil === "admin") {
-        echo "<br>Acesso total";
-    } else if ($perfil === "editor") {
-        echo "<br>Permissão exclusiva para publicar artigos.";
-    } else {
-        echo "<br>Acesso restrito apenas para leitura.";
-    }
-
-    $statusPedido = 2;
-
-    // A expressão match retorna a string diretamente para a variável
-    $mensagem = match ($statusPedido) {
-        1 => "<br><br>Aguardando Pagamento",
-        2 => "<br><br>Pagamento aprovado",
-        default => "<br><br>Status inválido"
-    };
-
-    echo $mensagem;
 
 ?>
